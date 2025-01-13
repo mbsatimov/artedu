@@ -1,5 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
+import { useRouter } from '@tanstack/react-router';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
@@ -16,10 +17,14 @@ export const useLoginForm = () => {
     }
   });
 
+  const router = useRouter();
   const postLoginMutation = useMutation({
     mutationFn: postLogin,
     onSuccess: () => {
       toast.success('Logged in successfully');
+    },
+    onError: () => {
+      router.navigate({ to: '/courses' });
     }
   });
 
