@@ -1,13 +1,7 @@
 import { Link } from '@tanstack/react-router';
 import { formatDistanceToNowStrict } from 'date-fns';
 
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  Spinner
-} from '@/components/ui';
+import { Card, CardContent, CardHeader, CardTitle, Spinner } from '@/components/ui';
 
 import { useCourseList } from './hooks';
 
@@ -28,26 +22,21 @@ export const CourseList = () => {
           <Link params={{ id: String(course.id) }} to='/courses/$id'>
             <img
               alt={course.title}
-              className='aspect-video h-[150px] origin-bottom object-cover transition-transform group-hover:scale-[1.02]'
+              className='aspect-video h-[90px] sm:h-[120px] md:h-[150px] origin-bottom object-cover transition-transform group-hover:scale-[1.02]'
               src={course.picture_url || '/placeholder.png'}
             />
           </Link>
           <div className='flex-1'>
-            <Link params={{ id: String(course.id) }} to='/courses/$id'>
-              <CardHeader>
+            <CardHeader className='p-3 pb-1'>
+              <Link params={{ id: String(course.id) }} to='/courses/$id'>
                 <CardTitle className='text-lg leading-none'>{course.title}</CardTitle>
-              </CardHeader>
-            </Link>
-            <CardContent>
-              <div className='flex gap-1 text-sm'>
-                <span className='text-muted-foreground'>
-                  {course.views_count.toLocaleString()} views
-                </span>
-                <span className='text-muted-foreground'>-</span>
-                <span className='text-muted-foreground'>
-                  {formatDistanceToNowStrict(course.published_date)} ago
-                </span>
-              </div>
+              </Link>
+            </CardHeader>
+            <CardContent className='p-3 pt-0'>
+              <p className='text-sm text-muted-foreground'>
+                {course.views_count.toLocaleString()} views -{' '}
+                {formatDistanceToNowStrict(course.published_date)} ago
+              </p>
             </CardContent>
           </div>
         </Card>

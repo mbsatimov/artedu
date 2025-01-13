@@ -25,8 +25,7 @@ const HomePage = () => {
         </div>
       </header>
       <Main>
-        <div
-          className='grid h-full grid-cols-1 bg-primary py-10 md:py-14 lg:py-20 rounded-[40px] px-8 lg:px-16 xl:px-32 sm:gap-8 md:gap-16 lg:gap-24 items-center md:grid-cols-2'>
+        <div className='grid h-full grid-cols-1 bg-primary py-10 md:py-14 lg:py-20 rounded-[40px] px-8 lg:px-16 xl:px-32 sm:gap-8 md:gap-16 lg:gap-24 items-center md:grid-cols-2'>
           <div className='text-center md:text-start text-white'>
             <h1 className='text-2xl lg:text-4xl py-4 font-bold'>
               Join the ARTEDU courses and learn new skills
@@ -41,20 +40,18 @@ const HomePage = () => {
             </Button>
           </div>
           <div className='hidden md:block'>
-            <img alt='Hero Image' src='/hero-img.png' />
+            <img alt='Hero Image' className='aspect-square' src='/hero-img.png' />
           </div>
         </div>
-        <div className="container grid grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))] gap-5 py-10 sm:mt-6 sm:py-0">
+        <div className='grid grid-cols-[repeat(auto-fit,_minmax(350px,_1fr))] gap-5 py-10 sm:mt-6 sm:py-0'>
           <Card>
             <CardHeader>
-              <div className="flex size-12 items-center justify-center rounded-[16px] bg-primary text-white">
+              <div className='flex size-12 items-center justify-center rounded-[16px] bg-primary text-white'>
                 <CheckIcon className='size-6' />
               </div>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <CardTitle className="italic">
-                Lorem ipsum.
-              </CardTitle>
+            <CardContent className='space-y-4'>
+              <CardTitle className='italic'>Lorem ipsum.</CardTitle>
               <CardDescription>
                 Loremk ipsum dolor sit amet, consectetur adipisicing elit. Animi, ducimus.
               </CardDescription>
@@ -62,14 +59,12 @@ const HomePage = () => {
           </Card>
           <Card>
             <CardHeader>
-              <div className="flex size-12 items-center justify-center rounded-[16px] bg-primary text-white">
+              <div className='flex size-12 items-center justify-center rounded-[16px] bg-primary text-white'>
                 <CheckIcon className='size-6' />
               </div>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <CardTitle className="italic">
-                Lorem ipsum.
-              </CardTitle>
+            <CardContent className='space-y-4'>
+              <CardTitle className='italic'>Lorem ipsum.</CardTitle>
               <CardDescription>
                 Loremk ipsum dolor sit amet, consectetur adipisicing elit. Animi, ducimus.
               </CardDescription>
@@ -77,14 +72,12 @@ const HomePage = () => {
           </Card>
           <Card>
             <CardHeader>
-              <div className="flex size-12 items-center justify-center rounded-[16px] bg-primary text-white">
+              <div className='flex size-12 items-center justify-center rounded-[16px] bg-primary text-white'>
                 <CheckIcon className='size-6' />
               </div>
             </CardHeader>
-            <CardContent className="space-y-4">
-              <CardTitle className="italic">
-                Lorem ipsum.
-              </CardTitle>
+            <CardContent className='space-y-4'>
+              <CardTitle className='italic'>Lorem ipsum.</CardTitle>
               <CardDescription>
                 Loremk ipsum dolor sit amet, consectetur adipisicing elit. Animi, ducimus.
               </CardDescription>
