@@ -1,4 +1,4 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useRouter } from '@tanstack/react-router';
 import { BadgeCheckIcon, HistoryIcon, LogOutIcon } from 'lucide-react';
 import { formatPhoneNumber } from 'react-phone-number-input';
 
@@ -17,6 +17,10 @@ import { useAuth } from '@/utils/stores';
 
 export const AppHeaderNavUser = () => {
   const { user } = useAuth();
+  const router = useRouter();
+  const onLogout = () => {
+    router.navigate({ to: '/' });
+  };
 
   return (
     <DropdownMenu>
@@ -62,7 +66,7 @@ export const AppHeaderNavUser = () => {
           </DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
-        <DropdownMenuItem className='text-red-500'>
+        <DropdownMenuItem className='text-red-500' onClick={onLogout}>
           <LogOutIcon />
           Log out
         </DropdownMenuItem>
