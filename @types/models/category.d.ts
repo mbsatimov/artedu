@@ -3,5 +3,5 @@ interface Category {
   name: string;
 }
 
-type CategoryResponse = Category;
-type CategoriesResponse = Category[];
+type CategoryResponse = ApiResponse<Category>;
+type CategoriesResponse = ApiResponse<Category[]>;

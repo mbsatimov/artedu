@@ -1,4 +1,4 @@
 import { api } from '@/utils/api/instance';
 
 export const getCourses = (requestConfig?: RequestConfig) =>
-  api.get<CoursesResponse>('courses', requestConfig?.config);
+  api.get<CoursesResponse>('courses/', requestConfig?.config);

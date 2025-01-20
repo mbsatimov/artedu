@@ -10,8 +10,15 @@ export const CourseList = () => {
 
   if (state.isLoading)
     return (
-      <div className='grid place-items-center mt-20'>
+      <div className='grid place-items-center pt-20'>
         <Spinner />
+      </div>
+    );
+
+  if (!state.courses?.length)
+    return (
+      <div className='pt-20'>
+        <h1 className='text-center text-muted-foreground font-bold'>No courses found</h1>
       </div>
     );
 
@@ -22,20 +29,20 @@ export const CourseList = () => {
           <Link params={{ id: String(course.id) }} to='/courses/$id'>
             <img
               alt={course.title}
-              className='aspect-video h-[90px] sm:h-[120px] md:h-[150px] origin-bottom object-cover transition-transform group-hover:scale-[1.02]'
-              src={course.picture_url || '/placeholder.png'}
+              className='aspect-[3/2] md:aspect-video h-[90px] sm:h-[120px] md:h-[150px] origin-bottom object-cover transition-transform group-hover:scale-[1.02]'
+              src={course.image}
             />
           </Link>
           <div className='flex-1'>
             <CardHeader className='p-3 pb-1'>
               <Link params={{ id: String(course.id) }} to='/courses/$id'>
-                <CardTitle className='text-lg leading-none'>{course.title}</CardTitle>
+                <CardTitle className='text-base md:text-lg leading-none'>{course.title}</CardTitle>
               </Link>
             </CardHeader>
             <CardContent className='p-3 pt-0'>
               <p className='text-sm text-muted-foreground'>
                 {course.views_count.toLocaleString()} views -{' '}
-                {formatDistanceToNowStrict(course.published_date)} ago
+                {formatDistanceToNowStrict(course.created_at)} ago
               </p>
             </CardContent>
           </div>

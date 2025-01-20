@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { patchSecurity } from '@/utils/api/requests';
+import { patchMe } from '@/utils/api/requests';
 
 import { type SecurityFormSchema, securityFormSchema } from '../constants';
 
@@ -17,15 +17,16 @@ export const useSecurityForm = () => {
   });
 
   const patchPersonalInfoMutation = useMutation({
-    mutationFn: patchSecurity,
+    mutationFn: patchMe,
     onSuccess: () => {
-      toast.success('Password changed successfully');
+      toast.success('Password updated successfully');
+      form.reset();
     }
   });
 
   const onSubmit = (data: SecurityFormSchema) => {
     patchPersonalInfoMutation.mutate({
-      data: { new_password: data.password }
+      data: { password: data.password }
     });
   };
 

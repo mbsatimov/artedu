@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import { postLogin } from '@/utils/api/requests';
+import { useAuth } from '@/utils/stores';
 
 import { loginFormSchema, type LoginFormSchema } from '../constants';
 
@@ -17,13 +18,14 @@ export const useLoginForm = () => {
     }
   });
 
+  const authStore = useAuth();
   const router = useRouter();
   const postLoginMutation = useMutation({
     mutationFn: postLogin,
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       toast.success('Logged in successfully');
-    },
-    onError: () => {
+      authStore.setAccessToken(data.result.access_token);
+      authStore.setRefreshToken(data.result.refresh_token);
       router.navigate({ to: '/courses' });
     }
   });

@@ -3,7 +3,8 @@ import { useMutation } from '@tanstack/react-query';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { patchPersonalInfo } from '@/utils/api/requests';
+import { handleFormServerErrors } from '@/lib/utils';
+import { patchMe } from '@/utils/api/requests';
 
 import { personalInfoFormSchema, type PersonalInfoFormSchema } from '../constants';
 
@@ -18,9 +19,12 @@ export const usePersonalInfoForm = (defaultValues?: User) => {
   });
 
   const patchPersonalInfoMutation = useMutation({
-    mutationFn: patchPersonalInfo,
+    mutationFn: patchMe,
     onSuccess: () => {
-      toast.success('Logged in successfully');
+      toast.success('Personal info updated successfully');
+    },
+    onError: (error) => {
+      handleFormServerErrors(error, form.setError);
     }
   });
 

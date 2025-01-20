@@ -1,33 +1,35 @@
 interface Course {
+  created_at: string;
   description: string;
-  end_date: string;
-  has_homework: boolean;
+  homework: string | null;
   id: number;
-  picture_url?: string;
-  published_date: string;
+  image: string;
+  student_homework: boolean;
+  test_result: number | null;
   title: string;
-  video_url?: string;
+  video?: string;
   views_count: number;
-  task: {
-    quiz: {
+  additional_materials: {
+    id: number;
+    name: string;
+    url: string;
+  }[];
+  questions: {
+    id: number;
+    question: string;
+    answers: {
       id: number;
-      question: string;
-      options: {
-        id: number;
-        label: string;
-      }[];
+      answer: string;
     }[];
-    homework_url?: string;
-  };
-}
-
-type CourseResponse = Course;
-type CoursesResponse = Course[];
-
-interface CourseTaskRequestData {
-  homework?: File;
-  quiz_answers: {
-    question_id: number;
-    selected_option_id: number;
   }[];
 }
+
+type CoursePreview = Omit<Course, 'questions'>;
+
+type CourseResponse = ApiResponse<Course>;
+type CoursesResponse = ApiResponse<CoursePreview[]>;
+
+type CourseTaskRequestData = {
+  question: number;
+  answer: number;
+}[];

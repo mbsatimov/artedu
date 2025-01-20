@@ -1,24 +1,29 @@
 import { Link, useRouter } from '@tanstack/react-router';
 import { BadgeCheckIcon, HistoryIcon, LogOutIcon } from 'lucide-react';
-import { formatPhoneNumber } from 'react-phone-number-input';
 
-import { Button, Skeleton } from '@/components/ui';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Button,
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
-  DropdownMenuTrigger
-} from '@/components/ui/dropdown-menu';
+  DropdownMenuTrigger,
+  Skeleton
+} from '@/components/ui';
+import { formatPhoneNumber } from '@/lib/utils';
 import { useAuth } from '@/utils/stores';
 
 export const AppHeaderNavUser = () => {
-  const { user } = useAuth();
+  const { user, reset } = useAuth();
   const router = useRouter();
+
   const onLogout = () => {
+    reset();
     router.navigate({ to: '/' });
   };
 

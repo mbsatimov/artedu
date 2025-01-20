@@ -9,49 +9,13 @@ export const useCourseList = () => {
   const [currentCategory] = useQueryState('category');
 
   const getCoursesQuery = useQuery({
-    queryKey: ['courses', search, page, size, currentCategory],
-    queryFn: () =>
-      getCourses({ config: { params: { search, page, size, category: currentCategory } } })
+    queryKey: ['courses', search, currentCategory],
+    queryFn: () => getCourses({ config: { params: { q: search, category_id: currentCategory } } })
   });
-
-  const data: Course[] = [
-    {
-      id: 1,
-      title: 'Hello world',
-      description: 'Hello world',
-      picture_url: '/placeholder.png',
-      end_date: '2024-12-12T12:12:12',
-      views_count: 12000,
-      video_url:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      published_date: '2024-12-12T12:12:12',
-      has_homework: true,
-      task: {
-        quiz: [],
-        homework_url: ''
-      }
-    },
-    {
-      id: 2,
-      title: 'Hello world',
-      description: 'Hello world',
-      picture_url: '/placeholder.png',
-      end_date: '2024-12-12T12:12:12',
-      views_count: 12000,
-      video_url:
-        'http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4',
-      published_date: '2025-01-12T12:12:12',
-      has_homework: true,
-      task: {
-        quiz: [],
-        homework_url: ''
-      }
-    }
-  ];
 
   return {
     state: {
-      courses: data || getCoursesQuery.data?.data,
+      courses: getCoursesQuery.data?.data.result,
       page,
       size,
       isFetching: getCoursesQuery.isFetching

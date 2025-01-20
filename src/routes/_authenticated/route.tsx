@@ -1,24 +1,42 @@
+import { useQuery } from '@tanstack/react-query';
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import { NuqsAdapter } from 'nuqs/adapters/react';
 
 import { AppHeader } from '@/components/Layout';
-import { TooltipProvider } from '@/components/ui';
-import { useAuthStore } from '@/utils/stores';
+import { Spinner } from '@/components/ui';
+import { getMe } from '@/utils/api/requests';
+import { useAuth, useAuthStore } from '@/utils/stores';
 
 const AuthenticatedLayout = () => {
+  const { setUser } = useAuth();
+  const getMeQuery = useQuery({
+    queryKey: ['me'],
+    queryFn: async () => {
+      const { data } = await getMe();
+      if (data.ok) setUser(data.result);
+      return data;
+    }
+  });
+
+  if (getMeQuery.isLoading) {
+    return (
+      <div className='h-svh grid place-items-center'>
+        <Spinner className='size-10' />
+      </div>
+    );
+  }
+
   return (
     <NuqsAdapter>
-      <TooltipProvider>
-        <AppHeader />
-        <Outlet />
-      </TooltipProvider>
+      <AppHeader />
+      <Outlet />
     </NuqsAdapter>
   );
 };
 
 export const Route = createFileRoute('/_authenticated')({
   beforeLoad: async ({ location }) => {
-    if (!useAuthStore.getState().auth.user) {
+    if (!useAuthStore.getState().auth.accessToken) {
       throw redirect({
         to: '/login',
         search: {

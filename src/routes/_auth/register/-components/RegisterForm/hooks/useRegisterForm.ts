@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
 import { postRegister } from '@/utils/api/requests';
+import { useAuth } from '@/utils/stores';
 
 import { registerFormSchema, type RegisterFormSchema } from '../constants';
 
@@ -20,13 +21,14 @@ export const useRegisterForm = () => {
     }
   });
 
+  const authStore = useAuth();
   const router = useRouter();
   const postRegisterMutation = useMutation({
     mutationFn: postRegister,
-    onSuccess: () => {
+    onSuccess: ({ data }) => {
       toast.success('Registered successfully');
-    },
-    onError: () => {
+      authStore.setAccessToken(data.result.access_token);
+      authStore.setRefreshToken(data.result.refresh_token);
       router.navigate({ to: '/courses' });
     }
   });

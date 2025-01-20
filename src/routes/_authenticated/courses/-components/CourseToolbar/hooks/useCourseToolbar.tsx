@@ -10,24 +10,9 @@ export const useCourseToolbar = () => {
     queryFn: () => getCategories()
   });
 
-  const categories: Category[] = [
-    {
-      id: 2,
-      name: 'Category 1'
-    },
-    {
-      id: 3,
-      name: 'Category 2'
-    },
-    {
-      id: 4,
-      name: 'Category 3'
-    }
-  ];
-
   return {
     state: {
-      categories: categories || getCategoriesQuery.data?.data || [],
+      categories: getCategoriesQuery.data?.data.result || [],
       isCategoriesLoading: getCategoriesQuery.isLoading,
       currentCategory
     },

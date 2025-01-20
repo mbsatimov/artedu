@@ -1,15 +1,14 @@
 import axios from 'axios';
-import Cookies from 'js-cookie';
 
-import { ACCESS_TOKEN } from '@/utils/stores';
+import { useAuthStore } from '@/utils/stores';
 
 const api = axios.create({
   withCredentials: true,
-  baseURL: 'http://localhost:3000/api/v1'
+  baseURL: import.meta.env.VITE_API_URL
 });
 
 api.interceptors.request.use((config) => {
-  const token = Cookies.get(ACCESS_TOKEN);
+  const token = useAuthStore.getState().auth.accessToken;
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }

@@ -4,22 +4,20 @@ import { useParams } from '@tanstack/react-router';
 import { useFieldArray, useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 
-import { postCoursesTask } from '@/utils/api/requests/courses/task';
+import { handleFormServerErrors } from '@/lib/utils.ts';
+import { postCoursesQuiz } from '@/utils/api/requests';
 
-import type { CourseTaskSchema } from '../constants';
+import { courseQuizSchema, type CourseQuizSchema } from '../constants';
 
-import { courseTaskSchema } from '../constants';
-
-export const useCourseTask = (course: Course) => {
+export const useCourseQuiz = (course: Course) => {
   const { id } = useParams({ from: '/_authenticated/courses/$id/' });
-  const form = useForm<CourseTaskSchema>({
-    resolver: zodResolver(courseTaskSchema(course.has_homework)),
+  const form = useForm<CourseQuizSchema>({
+    resolver: zodResolver(courseQuizSchema),
     defaultValues: {
-      quiz_answers: course.task.quiz.map((question) => ({
-        question_id: question.id,
-        selected_option_id: undefined
-      })),
-      homework: undefined
+      quiz_answers: course.questions.map((question) => ({
+        question: question.id,
+        answer: undefined
+      }))
     }
   });
 
@@ -29,22 +27,17 @@ export const useCourseTask = (course: Course) => {
   });
 
   const getCoursesTaskMutation = useMutation({
-    mutationFn: postCoursesTask,
+    mutationFn: postCoursesQuiz,
     onSuccess: () => {
       toast.success('Tasks uploaded');
+    },
+    onError: (error) => {
+      handleFormServerErrors(error, form.setError);
     }
   });
 
-  const onSubmit = (data: CourseTaskSchema) => {
-    getCoursesTaskMutation.mutate({
-      id,
-      data,
-      config: {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
-    });
+  const onSubmit = (data: CourseQuizSchema) => {
+    getCoursesTaskMutation.mutate({ id, data: data.quiz_answers });
   };
 
   return {

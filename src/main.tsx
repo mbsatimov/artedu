@@ -16,8 +16,15 @@ const mutationCache = new MutationCache({
   onSuccess: () => {
     queryClient.invalidateQueries();
   },
-  onError: (res: any) => {
-    toast.error(res.error || 'Something went wrong');
+  onError: (error) => {
+    if (error instanceof AxiosError) {
+      const errors = error.response?.data?.error;
+      if (typeof errors === 'object') {
+        toast.error((Object.values(errors)[0] as string[])[0] as string);
+      } else if (typeof errors === 'string') {
+        toast.error(errors);
+      }
+    }
   }
 });
 
