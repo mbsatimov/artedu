@@ -18,7 +18,7 @@ export const CourseList = () => {
   if (!state.courses?.length)
     return (
       <div className='pt-20'>
-        <h1 className='text-center text-muted-foreground font-bold'>No courses found</h1>
+        <h1 className='text-center font-bold text-muted-foreground'>No courses found</h1>
       </div>
     );
 
@@ -35,7 +35,7 @@ export const CourseList = () => {
               width={300}
             />
             <CardHeader className='p-3'>
-              <CardTitle className='text-base line-clamp-2 leading-none'>{course.title}</CardTitle>
+              <CardTitle className='line-clamp-2 text-base leading-none'>{course.title}</CardTitle>
             </CardHeader>
           </Link>
           <CardContent className='p-3 pt-0'>

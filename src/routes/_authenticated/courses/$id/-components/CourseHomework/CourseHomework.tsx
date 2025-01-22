@@ -18,10 +18,10 @@ export const CourseHomework = () => {
   return (
     <Form {...form}>
       <form
-        className='pl-4 border-l-2 border-primary my-10'
+        className='my-10 border-l-2 border-primary pl-4'
         onSubmit={form.handleSubmit(functions.onSubmit)}
       >
-        <h2 className='text-xl pt-2 pb-4 font-semibold'>Homework</h2>
+        <h2 className='pb-4 pt-2 text-xl font-semibold'>Homework</h2>
         <FormField
           render={({ field }) => (
             <FormItem>

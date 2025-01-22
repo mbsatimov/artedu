@@ -8,10 +8,10 @@ import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } fro
 const HomePage = () => {
   return (
     <div>
-      <header className='sticky left-0 top-0 z-50 gap-3 bg-background h-16'>
-        <div className='flex items-center justify-between px-4 max-w-7xl mx-auto gap-3 h-full'>
+      <header className='sticky left-0 top-0 z-50 h-16 gap-3 bg-background'>
+        <div className='mx-auto flex h-full max-w-7xl items-center justify-between gap-3 px-4'>
           <Link to='/'>
-            <div className='flex gap-1 items-center justify-center'>
+            <div className='flex items-center justify-center gap-1'>
               <CommandIcon />
               <h1 className='text-xl font-medium'>ARTEDU</h1>
             </div>
@@ -19,27 +19,27 @@ const HomePage = () => {
           <div className='ml-auto flex items-center space-x-4'>
             <AppHeaderThemeSwitch />
             <Button asChild>
-              <Link to='/login'>Login</Link>
+              <Link to='/login'>Kirish</Link>
             </Button>
           </div>
         </div>
       </header>
       <Main>
-        <div className='grid h-full grid-cols-1 bg-primary py-10 md:py-14 lg:py-20 rounded-[40px] px-8 lg:px-16 xl:px-32 sm:gap-8 md:gap-16 lg:gap-24 items-center md:grid-cols-2'>
-          <div className='text-center md:text-start text-white'>
-            <h1 className='text-2xl lg:text-4xl py-4 font-bold'>
-              Join the ARTEDU courses and learn new skills
+        <div className='grid h-full grid-cols-1 items-center rounded-[40px] bg-primary px-8 py-10 sm:gap-8 md:grid-cols-2 md:gap-16 md:py-14 lg:gap-24 lg:px-16 lg:py-20 xl:px-32'>
+          <div className='order-2 text-center text-white md:order-1 md:text-start'>
+            <h1 className='py-4 text-2xl font-bold lg:text-4xl'>
+              ARTEDU – Onlayn ta&apos;limning yangi darajasi!
             </h1>
-            <p className='text-white leading-7'>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Adipisci aliquid at commodi
-              debitis dolores ea eaque enim ex facere harum inventore minima odio odit, quia
-              quisquam quos reiciendis reprehenderit voluptas.
+            <p className='leading-7 text-white'>
+              Ushbu platforma bo&apos;lajak muhandislarga qo&apos;lda va kompyuterda chizmalar
+              yaratishning ilmiy asoslari, terminologiyasi va xalqaro standartlari bilan qulay
+              tanishish imkonini beradi.
             </p>
             <Button asChild className='mt-6' size='lg' variant='secondary'>
-              <Link to='/register'>Register now</Link>
+              <Link to='/register'>Hozir ro&apos;yxatdan o&apos;ting</Link>
             </Button>
           </div>
-          <div className='hidden md:block'>
+          <div className='order-1 mx-auto w-full max-w-[350px] md:order-2 md:max-w-none'>
             <img alt='Hero Image' className='aspect-square' src='/hero-img.png' />
           </div>
         </div>
@@ -51,9 +51,9 @@ const HomePage = () => {
               </div>
             </CardHeader>
             <CardContent className='space-y-4'>
-              <CardTitle className='italic'>Lorem ipsum.</CardTitle>
+              <CardTitle className='italic'>Video darslar</CardTitle>
               <CardDescription>
-                Loremk ipsum dolor sit amet, consectetur adipisicing elit. Animi, ducimus.
+                Har bir mavzu uchun sifatli va tushunarli dars materiallari.
               </CardDescription>
             </CardContent>
           </Card>
@@ -64,9 +64,9 @@ const HomePage = () => {
               </div>
             </CardHeader>
             <CardContent className='space-y-4'>
-              <CardTitle className='italic'>Lorem ipsum.</CardTitle>
+              <CardTitle className='italic'>Moslashuvchan o&apos;qish</CardTitle>
               <CardDescription>
-                Loremk ipsum dolor sit amet, consectetur adipisicing elit. Animi, ducimus.
+                Har qanday qurilmada, istalgan joyda o&apos;rganing.
               </CardDescription>
             </CardContent>
           </Card>
@@ -77,9 +77,9 @@ const HomePage = () => {
               </div>
             </CardHeader>
             <CardContent className='space-y-4'>
-              <CardTitle className='italic'>Lorem ipsum.</CardTitle>
+              <CardTitle className='italic'>Test topshiriqlar</CardTitle>
               <CardDescription>
-                Loremk ipsum dolor sit amet, consectetur adipisicing elit. Animi, ducimus.
+                Bilimlaringizni mustahkamlash uchun interaktiv testlar.
               </CardDescription>
             </CardContent>
           </Card>

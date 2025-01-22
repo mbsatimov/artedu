@@ -23,20 +23,20 @@ export const CourseQuiz = ({ course }: Props) => {
   return (
     <Form {...form}>
       <form
-        className='pl-4 border-l-2 border-primary my-10'
+        className='my-10 border-l-2 border-primary pl-4'
         onSubmit={form.handleSubmit(functions.onSubmit)}
       >
-        <h2 className='text-xl pb-4 font-semibold'>Quiz</h2>
+        <h2 className='pb-4 text-xl font-semibold'>Quiz</h2>
         <div className='space-y-4 [&_img]:rounded-sm'>
           {course.questions.map((question, index) => (
             <div key={question.id}>
-              <div className='flex group/question gap-3'>
-                <div className='rounded-full shrink-0 bg-primary text-sm text-primary-foreground size-6 grid place-items-center'>
+              <div className='group/question flex gap-3'>
+                <div className='grid size-6 shrink-0 place-items-center rounded-full bg-primary text-sm text-primary-foreground'>
                   {index + 1}
                 </div>
                 <div className='flex-1' dangerouslySetInnerHTML={{ __html: question.question }} />
               </div>
-              <div className='space-y-3 ml-5 py-3'>
+              <div className='ml-5 space-y-3 py-3'>
                 <FormField
                   render={({ field }) => (
                     <FormItem className='space-y-3'>

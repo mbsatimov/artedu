@@ -8,320 +8,293 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
+import { createFileRoute } from '@tanstack/react-router';
 
 // Import Routes
 
-import { Route as rootRoute } from './routes/__root'
-import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route'
-import { Route as AuthRouteImport } from './routes/_auth/route'
+import { Route as rootRoute } from './routes/__root';
+import { Route as AuthenticatedRouteImport } from './routes/_authenticated/route';
+import { Route as AuthRouteImport } from './routes/_auth/route';
 
 // Create Virtual Routes
 
-const IndexLazyImport = createFileRoute('/')()
-const errors500LazyImport = createFileRoute('/(errors)/500')()
-const errors404LazyImport = createFileRoute('/(errors)/404')()
-const errors403LazyImport = createFileRoute('/(errors)/403')()
-const errors401LazyImport = createFileRoute('/(errors)/401')()
-const AuthenticatedProfileIndexLazyImport = createFileRoute(
-  '/_authenticated/profile/',
-)()
-const AuthenticatedHistoryIndexLazyImport = createFileRoute(
-  '/_authenticated/history/',
-)()
-const AuthenticatedCoursesIndexLazyImport = createFileRoute(
-  '/_authenticated/courses/',
-)()
-const AuthRegisterIndexLazyImport = createFileRoute('/_auth/register/')()
-const AuthLoginIndexLazyImport = createFileRoute('/_auth/login/')()
-const AuthenticatedCoursesIdIndexLazyImport = createFileRoute(
-  '/_authenticated/courses/$id/',
-)()
+const IndexLazyImport = createFileRoute('/')();
+const errors500LazyImport = createFileRoute('/(errors)/500')();
+const errors404LazyImport = createFileRoute('/(errors)/404')();
+const errors403LazyImport = createFileRoute('/(errors)/403')();
+const errors401LazyImport = createFileRoute('/(errors)/401')();
+const AuthenticatedProfileIndexLazyImport = createFileRoute('/_authenticated/profile/')();
+const AuthenticatedHistoryIndexLazyImport = createFileRoute('/_authenticated/history/')();
+const AuthenticatedCoursesIndexLazyImport = createFileRoute('/_authenticated/courses/')();
+const AuthRegisterIndexLazyImport = createFileRoute('/_auth/register/')();
+const AuthLoginIndexLazyImport = createFileRoute('/_auth/login/')();
+const AuthenticatedCoursesIdIndexLazyImport = createFileRoute('/_authenticated/courses/$id/')();
 
 // Create/Update Routes
 
 const AuthenticatedRouteRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
-  getParentRoute: () => rootRoute,
-} as any)
+  getParentRoute: () => rootRoute
+} as any);
 
 const AuthRouteRoute = AuthRouteImport.update({
   id: '/_auth',
-  getParentRoute: () => rootRoute,
-} as any)
+  getParentRoute: () => rootRoute
+} as any);
 
 const IndexLazyRoute = IndexLazyImport.update({
   id: '/',
   path: '/',
-  getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+  getParentRoute: () => rootRoute
+} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route));
 
 const errors500LazyRoute = errors500LazyImport
   .update({
     id: '/(errors)/500',
     path: '/500',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(errors)/500.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(errors)/500.lazy').then((d) => d.Route));
 
 const errors404LazyRoute = errors404LazyImport
   .update({
     id: '/(errors)/404',
     path: '/404',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(errors)/404.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(errors)/404.lazy').then((d) => d.Route));
 
 const errors403LazyRoute = errors403LazyImport
   .update({
     id: '/(errors)/403',
     path: '/403',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(errors)/403.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(errors)/403.lazy').then((d) => d.Route));
 
 const errors401LazyRoute = errors401LazyImport
   .update({
     id: '/(errors)/401',
     path: '/401',
-    getParentRoute: () => rootRoute,
+    getParentRoute: () => rootRoute
   } as any)
-  .lazy(() => import('./routes/(errors)/401.lazy').then((d) => d.Route))
+  .lazy(() => import('./routes/(errors)/401.lazy').then((d) => d.Route));
 
-const AuthenticatedProfileIndexLazyRoute =
-  AuthenticatedProfileIndexLazyImport.update({
-    id: '/profile/',
-    path: '/profile/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any).lazy(() =>
-    import('./routes/_authenticated/profile/index.lazy').then((d) => d.Route),
-  )
+const AuthenticatedProfileIndexLazyRoute = AuthenticatedProfileIndexLazyImport.update({
+  id: '/profile/',
+  path: '/profile/',
+  getParentRoute: () => AuthenticatedRouteRoute
+} as any).lazy(() => import('./routes/_authenticated/profile/index.lazy').then((d) => d.Route));
 
-const AuthenticatedHistoryIndexLazyRoute =
-  AuthenticatedHistoryIndexLazyImport.update({
-    id: '/history/',
-    path: '/history/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any).lazy(() =>
-    import('./routes/_authenticated/history/index.lazy').then((d) => d.Route),
-  )
+const AuthenticatedHistoryIndexLazyRoute = AuthenticatedHistoryIndexLazyImport.update({
+  id: '/history/',
+  path: '/history/',
+  getParentRoute: () => AuthenticatedRouteRoute
+} as any).lazy(() => import('./routes/_authenticated/history/index.lazy').then((d) => d.Route));
 
-const AuthenticatedCoursesIndexLazyRoute =
-  AuthenticatedCoursesIndexLazyImport.update({
-    id: '/courses/',
-    path: '/courses/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any).lazy(() =>
-    import('./routes/_authenticated/courses/index.lazy').then((d) => d.Route),
-  )
+const AuthenticatedCoursesIndexLazyRoute = AuthenticatedCoursesIndexLazyImport.update({
+  id: '/courses/',
+  path: '/courses/',
+  getParentRoute: () => AuthenticatedRouteRoute
+} as any).lazy(() => import('./routes/_authenticated/courses/index.lazy').then((d) => d.Route));
 
 const AuthRegisterIndexLazyRoute = AuthRegisterIndexLazyImport.update({
   id: '/register/',
   path: '/register/',
-  getParentRoute: () => AuthRouteRoute,
-} as any).lazy(() =>
-  import('./routes/_auth/register/index.lazy').then((d) => d.Route),
-)
+  getParentRoute: () => AuthRouteRoute
+} as any).lazy(() => import('./routes/_auth/register/index.lazy').then((d) => d.Route));
 
 const AuthLoginIndexLazyRoute = AuthLoginIndexLazyImport.update({
   id: '/login/',
   path: '/login/',
-  getParentRoute: () => AuthRouteRoute,
-} as any).lazy(() =>
-  import('./routes/_auth/login/index.lazy').then((d) => d.Route),
-)
+  getParentRoute: () => AuthRouteRoute
+} as any).lazy(() => import('./routes/_auth/login/index.lazy').then((d) => d.Route));
 
-const AuthenticatedCoursesIdIndexLazyRoute =
-  AuthenticatedCoursesIdIndexLazyImport.update({
-    id: '/courses/$id/',
-    path: '/courses/$id/',
-    getParentRoute: () => AuthenticatedRouteRoute,
-  } as any).lazy(() =>
-    import('./routes/_authenticated/courses/$id/index.lazy').then(
-      (d) => d.Route,
-    ),
-  )
+const AuthenticatedCoursesIdIndexLazyRoute = AuthenticatedCoursesIdIndexLazyImport.update({
+  id: '/courses/$id/',
+  path: '/courses/$id/',
+  getParentRoute: () => AuthenticatedRouteRoute
+} as any).lazy(() => import('./routes/_authenticated/courses/$id/index.lazy').then((d) => d.Route));
 
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
     '/': {
-      id: '/'
-      path: '/'
-      fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/';
+      path: '/';
+      fullPath: '/';
+      preLoaderRoute: typeof IndexLazyImport;
+      parentRoute: typeof rootRoute;
+    };
     '/_auth': {
-      id: '/_auth'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthRouteImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/_auth';
+      path: '';
+      fullPath: '';
+      preLoaderRoute: typeof AuthRouteImport;
+      parentRoute: typeof rootRoute;
+    };
     '/_authenticated': {
-      id: '/_authenticated'
-      path: ''
-      fullPath: ''
-      preLoaderRoute: typeof AuthenticatedRouteImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/_authenticated';
+      path: '';
+      fullPath: '';
+      preLoaderRoute: typeof AuthenticatedRouteImport;
+      parentRoute: typeof rootRoute;
+    };
     '/(errors)/401': {
-      id: '/(errors)/401'
-      path: '/401'
-      fullPath: '/401'
-      preLoaderRoute: typeof errors401LazyImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/(errors)/401';
+      path: '/401';
+      fullPath: '/401';
+      preLoaderRoute: typeof errors401LazyImport;
+      parentRoute: typeof rootRoute;
+    };
     '/(errors)/403': {
-      id: '/(errors)/403'
-      path: '/403'
-      fullPath: '/403'
-      preLoaderRoute: typeof errors403LazyImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/(errors)/403';
+      path: '/403';
+      fullPath: '/403';
+      preLoaderRoute: typeof errors403LazyImport;
+      parentRoute: typeof rootRoute;
+    };
     '/(errors)/404': {
-      id: '/(errors)/404'
-      path: '/404'
-      fullPath: '/404'
-      preLoaderRoute: typeof errors404LazyImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/(errors)/404';
+      path: '/404';
+      fullPath: '/404';
+      preLoaderRoute: typeof errors404LazyImport;
+      parentRoute: typeof rootRoute;
+    };
     '/(errors)/500': {
-      id: '/(errors)/500'
-      path: '/500'
-      fullPath: '/500'
-      preLoaderRoute: typeof errors500LazyImport
-      parentRoute: typeof rootRoute
-    }
+      id: '/(errors)/500';
+      path: '/500';
+      fullPath: '/500';
+      preLoaderRoute: typeof errors500LazyImport;
+      parentRoute: typeof rootRoute;
+    };
     '/_auth/login/': {
-      id: '/_auth/login/'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof AuthLoginIndexLazyImport
-      parentRoute: typeof AuthRouteImport
-    }
+      id: '/_auth/login/';
+      path: '/login';
+      fullPath: '/login';
+      preLoaderRoute: typeof AuthLoginIndexLazyImport;
+      parentRoute: typeof AuthRouteImport;
+    };
     '/_auth/register/': {
-      id: '/_auth/register/'
-      path: '/register'
-      fullPath: '/register'
-      preLoaderRoute: typeof AuthRegisterIndexLazyImport
-      parentRoute: typeof AuthRouteImport
-    }
+      id: '/_auth/register/';
+      path: '/register';
+      fullPath: '/register';
+      preLoaderRoute: typeof AuthRegisterIndexLazyImport;
+      parentRoute: typeof AuthRouteImport;
+    };
     '/_authenticated/courses/': {
-      id: '/_authenticated/courses/'
-      path: '/courses'
-      fullPath: '/courses'
-      preLoaderRoute: typeof AuthenticatedCoursesIndexLazyImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
+      id: '/_authenticated/courses/';
+      path: '/courses';
+      fullPath: '/courses';
+      preLoaderRoute: typeof AuthenticatedCoursesIndexLazyImport;
+      parentRoute: typeof AuthenticatedRouteImport;
+    };
     '/_authenticated/history/': {
-      id: '/_authenticated/history/'
-      path: '/history'
-      fullPath: '/history'
-      preLoaderRoute: typeof AuthenticatedHistoryIndexLazyImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
+      id: '/_authenticated/history/';
+      path: '/history';
+      fullPath: '/history';
+      preLoaderRoute: typeof AuthenticatedHistoryIndexLazyImport;
+      parentRoute: typeof AuthenticatedRouteImport;
+    };
     '/_authenticated/profile/': {
-      id: '/_authenticated/profile/'
-      path: '/profile'
-      fullPath: '/profile'
-      preLoaderRoute: typeof AuthenticatedProfileIndexLazyImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
+      id: '/_authenticated/profile/';
+      path: '/profile';
+      fullPath: '/profile';
+      preLoaderRoute: typeof AuthenticatedProfileIndexLazyImport;
+      parentRoute: typeof AuthenticatedRouteImport;
+    };
     '/_authenticated/courses/$id/': {
-      id: '/_authenticated/courses/$id/'
-      path: '/courses/$id'
-      fullPath: '/courses/$id'
-      preLoaderRoute: typeof AuthenticatedCoursesIdIndexLazyImport
-      parentRoute: typeof AuthenticatedRouteImport
-    }
+      id: '/_authenticated/courses/$id/';
+      path: '/courses/$id';
+      fullPath: '/courses/$id';
+      preLoaderRoute: typeof AuthenticatedCoursesIdIndexLazyImport;
+      parentRoute: typeof AuthenticatedRouteImport;
+    };
   }
 }
 
 // Create and export the route tree
 
 interface AuthRouteRouteChildren {
-  AuthLoginIndexLazyRoute: typeof AuthLoginIndexLazyRoute
-  AuthRegisterIndexLazyRoute: typeof AuthRegisterIndexLazyRoute
+  AuthLoginIndexLazyRoute: typeof AuthLoginIndexLazyRoute;
+  AuthRegisterIndexLazyRoute: typeof AuthRegisterIndexLazyRoute;
 }
 
 const AuthRouteRouteChildren: AuthRouteRouteChildren = {
   AuthLoginIndexLazyRoute: AuthLoginIndexLazyRoute,
-  AuthRegisterIndexLazyRoute: AuthRegisterIndexLazyRoute,
-}
+  AuthRegisterIndexLazyRoute: AuthRegisterIndexLazyRoute
+};
 
-const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(
-  AuthRouteRouteChildren,
-)
+const AuthRouteRouteWithChildren = AuthRouteRoute._addFileChildren(AuthRouteRouteChildren);
 
 interface AuthenticatedRouteRouteChildren {
-  AuthenticatedCoursesIndexLazyRoute: typeof AuthenticatedCoursesIndexLazyRoute
-  AuthenticatedHistoryIndexLazyRoute: typeof AuthenticatedHistoryIndexLazyRoute
-  AuthenticatedProfileIndexLazyRoute: typeof AuthenticatedProfileIndexLazyRoute
-  AuthenticatedCoursesIdIndexLazyRoute: typeof AuthenticatedCoursesIdIndexLazyRoute
+  AuthenticatedCoursesIndexLazyRoute: typeof AuthenticatedCoursesIndexLazyRoute;
+  AuthenticatedHistoryIndexLazyRoute: typeof AuthenticatedHistoryIndexLazyRoute;
+  AuthenticatedProfileIndexLazyRoute: typeof AuthenticatedProfileIndexLazyRoute;
+  AuthenticatedCoursesIdIndexLazyRoute: typeof AuthenticatedCoursesIdIndexLazyRoute;
 }
 
 const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedCoursesIndexLazyRoute: AuthenticatedCoursesIndexLazyRoute,
   AuthenticatedHistoryIndexLazyRoute: AuthenticatedHistoryIndexLazyRoute,
   AuthenticatedProfileIndexLazyRoute: AuthenticatedProfileIndexLazyRoute,
-  AuthenticatedCoursesIdIndexLazyRoute: AuthenticatedCoursesIdIndexLazyRoute,
-}
+  AuthenticatedCoursesIdIndexLazyRoute: AuthenticatedCoursesIdIndexLazyRoute
+};
 
-const AuthenticatedRouteRouteWithChildren =
-  AuthenticatedRouteRoute._addFileChildren(AuthenticatedRouteRouteChildren)
+const AuthenticatedRouteRouteWithChildren = AuthenticatedRouteRoute._addFileChildren(
+  AuthenticatedRouteRouteChildren
+);
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
-  '': typeof AuthenticatedRouteRouteWithChildren
-  '/401': typeof errors401LazyRoute
-  '/403': typeof errors403LazyRoute
-  '/404': typeof errors404LazyRoute
-  '/500': typeof errors500LazyRoute
-  '/login': typeof AuthLoginIndexLazyRoute
-  '/register': typeof AuthRegisterIndexLazyRoute
-  '/courses': typeof AuthenticatedCoursesIndexLazyRoute
-  '/history': typeof AuthenticatedHistoryIndexLazyRoute
-  '/profile': typeof AuthenticatedProfileIndexLazyRoute
-  '/courses/$id': typeof AuthenticatedCoursesIdIndexLazyRoute
+  '/': typeof IndexLazyRoute;
+  '': typeof AuthenticatedRouteRouteWithChildren;
+  '/401': typeof errors401LazyRoute;
+  '/403': typeof errors403LazyRoute;
+  '/404': typeof errors404LazyRoute;
+  '/500': typeof errors500LazyRoute;
+  '/login': typeof AuthLoginIndexLazyRoute;
+  '/register': typeof AuthRegisterIndexLazyRoute;
+  '/courses': typeof AuthenticatedCoursesIndexLazyRoute;
+  '/history': typeof AuthenticatedHistoryIndexLazyRoute;
+  '/profile': typeof AuthenticatedProfileIndexLazyRoute;
+  '/courses/$id': typeof AuthenticatedCoursesIdIndexLazyRoute;
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
-  '': typeof AuthenticatedRouteRouteWithChildren
-  '/401': typeof errors401LazyRoute
-  '/403': typeof errors403LazyRoute
-  '/404': typeof errors404LazyRoute
-  '/500': typeof errors500LazyRoute
-  '/login': typeof AuthLoginIndexLazyRoute
-  '/register': typeof AuthRegisterIndexLazyRoute
-  '/courses': typeof AuthenticatedCoursesIndexLazyRoute
-  '/history': typeof AuthenticatedHistoryIndexLazyRoute
-  '/profile': typeof AuthenticatedProfileIndexLazyRoute
-  '/courses/$id': typeof AuthenticatedCoursesIdIndexLazyRoute
+  '/': typeof IndexLazyRoute;
+  '': typeof AuthenticatedRouteRouteWithChildren;
+  '/401': typeof errors401LazyRoute;
+  '/403': typeof errors403LazyRoute;
+  '/404': typeof errors404LazyRoute;
+  '/500': typeof errors500LazyRoute;
+  '/login': typeof AuthLoginIndexLazyRoute;
+  '/register': typeof AuthRegisterIndexLazyRoute;
+  '/courses': typeof AuthenticatedCoursesIndexLazyRoute;
+  '/history': typeof AuthenticatedHistoryIndexLazyRoute;
+  '/profile': typeof AuthenticatedProfileIndexLazyRoute;
+  '/courses/$id': typeof AuthenticatedCoursesIdIndexLazyRoute;
 }
 
 export interface FileRoutesById {
-  __root__: typeof rootRoute
-  '/': typeof IndexLazyRoute
-  '/_auth': typeof AuthRouteRouteWithChildren
-  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
-  '/(errors)/401': typeof errors401LazyRoute
-  '/(errors)/403': typeof errors403LazyRoute
-  '/(errors)/404': typeof errors404LazyRoute
-  '/(errors)/500': typeof errors500LazyRoute
-  '/_auth/login/': typeof AuthLoginIndexLazyRoute
-  '/_auth/register/': typeof AuthRegisterIndexLazyRoute
-  '/_authenticated/courses/': typeof AuthenticatedCoursesIndexLazyRoute
-  '/_authenticated/history/': typeof AuthenticatedHistoryIndexLazyRoute
-  '/_authenticated/profile/': typeof AuthenticatedProfileIndexLazyRoute
-  '/_authenticated/courses/$id/': typeof AuthenticatedCoursesIdIndexLazyRoute
+  __root__: typeof rootRoute;
+  '/': typeof IndexLazyRoute;
+  '/_auth': typeof AuthRouteRouteWithChildren;
+  '/_authenticated': typeof AuthenticatedRouteRouteWithChildren;
+  '/(errors)/401': typeof errors401LazyRoute;
+  '/(errors)/403': typeof errors403LazyRoute;
+  '/(errors)/404': typeof errors404LazyRoute;
+  '/(errors)/500': typeof errors500LazyRoute;
+  '/_auth/login/': typeof AuthLoginIndexLazyRoute;
+  '/_auth/register/': typeof AuthRegisterIndexLazyRoute;
+  '/_authenticated/courses/': typeof AuthenticatedCoursesIndexLazyRoute;
+  '/_authenticated/history/': typeof AuthenticatedHistoryIndexLazyRoute;
+  '/_authenticated/profile/': typeof AuthenticatedProfileIndexLazyRoute;
+  '/_authenticated/courses/$id/': typeof AuthenticatedCoursesIdIndexLazyRoute;
 }
 
 export interface FileRouteTypes {
-  fileRoutesByFullPath: FileRoutesByFullPath
+  fileRoutesByFullPath: FileRoutesByFullPath;
   fullPaths:
     | '/'
     | ''
@@ -334,8 +307,8 @@ export interface FileRouteTypes {
     | '/courses'
     | '/history'
     | '/profile'
-    | '/courses/$id'
-  fileRoutesByTo: FileRoutesByTo
+    | '/courses/$id';
+  fileRoutesByTo: FileRoutesByTo;
   to:
     | '/'
     | ''
@@ -348,7 +321,7 @@ export interface FileRouteTypes {
     | '/courses'
     | '/history'
     | '/profile'
-    | '/courses/$id'
+    | '/courses/$id';
   id:
     | '__root__'
     | '/'
@@ -363,18 +336,18 @@ export interface FileRouteTypes {
     | '/_authenticated/courses/'
     | '/_authenticated/history/'
     | '/_authenticated/profile/'
-    | '/_authenticated/courses/$id/'
-  fileRoutesById: FileRoutesById
+    | '/_authenticated/courses/$id/';
+  fileRoutesById: FileRoutesById;
 }
 
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
-  AuthRouteRoute: typeof AuthRouteRouteWithChildren
-  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
-  errors401LazyRoute: typeof errors401LazyRoute
-  errors403LazyRoute: typeof errors403LazyRoute
-  errors404LazyRoute: typeof errors404LazyRoute
-  errors500LazyRoute: typeof errors500LazyRoute
+  IndexLazyRoute: typeof IndexLazyRoute;
+  AuthRouteRoute: typeof AuthRouteRouteWithChildren;
+  AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren;
+  errors401LazyRoute: typeof errors401LazyRoute;
+  errors403LazyRoute: typeof errors403LazyRoute;
+  errors404LazyRoute: typeof errors404LazyRoute;
+  errors500LazyRoute: typeof errors500LazyRoute;
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -384,12 +357,12 @@ const rootRouteChildren: RootRouteChildren = {
   errors401LazyRoute: errors401LazyRoute,
   errors403LazyRoute: errors403LazyRoute,
   errors404LazyRoute: errors404LazyRoute,
-  errors500LazyRoute: errors500LazyRoute,
-}
+  errors500LazyRoute: errors500LazyRoute
+};
 
 export const routeTree = rootRoute
   ._addFileChildren(rootRouteChildren)
-  ._addFileTypes<FileRouteTypes>()
+  ._addFileTypes<FileRouteTypes>();
 
 /* ROUTE_MANIFEST_START
 {

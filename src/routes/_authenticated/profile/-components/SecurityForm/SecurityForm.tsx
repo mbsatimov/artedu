@@ -56,7 +56,7 @@ export const SecurityForm = () => {
               control={form.control}
             />
           </CardContent>
-          <CardFooter className='border-t py-3 px-5'>
+          <CardFooter className='border-t px-5 py-3'>
             <Button type='submit' loading={state.isPending}>
               Save
             </Button>

@@ -20,7 +20,7 @@ const AuthenticatedLayout = () => {
 
   if (getMeQuery.isLoading) {
     return (
-      <div className='h-svh grid place-items-center'>
+      <div className='grid h-svh place-items-center'>
         <Spinner className='size-10' />
       </div>
     );

@@ -14,12 +14,12 @@ export const AppHeader = React.forwardRef<React.ElementRef<'header'>, AppHeaderP
     return (
       <header
         ref={ref}
-        className={cn('sticky left-0 top-0 z-50 gap-3 bg-background h-16 border-b', className)}
+        className={cn('sticky left-0 top-0 z-50 h-16 gap-3 border-b bg-background', className)}
         {...props}
       >
-        <div className='flex items-center px-4 max-w-7xl mx-auto gap-3 h-full'>
+        <div className='mx-auto flex h-full max-w-7xl items-center gap-3 px-4'>
           <Link to='/courses'>
-            <div className='flex gap-1 items-center justify-center'>
+            <div className='flex items-center justify-center gap-1'>
               <CommandIcon />
               <h1 className='text-xl font-medium'>ARTEDU</h1>
             </div>

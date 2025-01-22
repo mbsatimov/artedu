@@ -55,9 +55,9 @@ export const LoginForm = ({ className, ...props }: Props) => {
               Login
             </Button>
           </div>
-          <div className="mt-4 text-center text-sm">
-            Don&apos;t have an account?{" "}
-            <Link className="underline underline-offset-4" to="/register">
+          <div className='mt-4 text-center text-sm'>
+            Don&apos;t have an account?{' '}
+            <Link className='underline underline-offset-4' to='/register'>
               Sign up
             </Link>
           </div>

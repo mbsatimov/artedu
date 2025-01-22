@@ -18,7 +18,7 @@ export const CourseList = () => {
   if (!state.courses?.length)
     return (
       <div className='pt-20'>
-        <h1 className='text-center text-muted-foreground font-bold'>No courses found</h1>
+        <h1 className='text-center font-bold text-muted-foreground'>No courses found</h1>
       </div>
     );
 
@@ -29,14 +29,14 @@ export const CourseList = () => {
           <Link params={{ id: String(course.id) }} to='/courses/$id'>
             <img
               alt={course.title}
-              className='aspect-[3/2] md:aspect-video h-[90px] sm:h-[120px] md:h-[150px] origin-bottom object-cover transition-transform group-hover:scale-[1.02]'
+              className='aspect-[3/2] h-[90px] origin-bottom object-cover transition-transform group-hover:scale-[1.02] sm:h-[120px] md:aspect-video md:h-[150px]'
               src={course.image}
             />
           </Link>
           <div className='flex-1'>
             <CardHeader className='p-3 pb-1'>
               <Link params={{ id: String(course.id) }} to='/courses/$id'>
-                <CardTitle className='text-base md:text-lg leading-none'>{course.title}</CardTitle>
+                <CardTitle className='text-base leading-none md:text-lg'>{course.title}</CardTitle>
               </Link>
             </CardHeader>
             <CardContent className='p-3 pt-0'>
