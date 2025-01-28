@@ -2,7 +2,15 @@ import { createLazyFileRoute } from '@tanstack/react-router';
 import { formatDistanceToNowStrict } from 'date-fns';
 
 import { Main } from '@/components/Layout';
-import { Separator, Spinner, Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui';
+import {
+  Button,
+  Separator,
+  Spinner,
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger
+} from '@/components/ui';
 
 import { CourseHomework, CourseQuiz } from './-components';
 import { useCoursePage } from './-hooks';
@@ -60,10 +68,10 @@ const CourseEditPage = () => {
       <Tabs className='w-[400px]'>
         <TabsList>
           <TabsTrigger value='quiz'>Solve quiz</TabsTrigger>
-          <TabsTrigger value='homework'>Upload homework</TabsTrigger>
+          {state.course.homework && <TabsTrigger value='homework'>Upload homework</TabsTrigger>}
         </TabsList>
         <TabsContent value='quiz'>
-          {state.course.test_result ? (
+          {state.course.test_result !== null ? (
             <div className='flex items-center gap-2 p-2'>
               <span className='font-semibold'>Your quiz result:</span>
               <span className='font-semibold text-primary'>
@@ -74,23 +82,24 @@ const CourseEditPage = () => {
             <CourseQuiz course={state.course} />
           )}
         </TabsContent>
-        <TabsContent value='homework'>
-          {state.course.homework ? (
-            <div className='flex items-center gap-2 p-2 font-semibold'>
-              <a
-                href={state.course.homework}
-                className='text-primary'
-                rel='noreferrer'
-                target='_blank'
-              >
-                Homework
-              </a>
-              is already uploaded
-            </div>
-          ) : (
-            <CourseHomework />
-          )}
-        </TabsContent>
+        {state.course.homework && (
+          <TabsContent value='homework'>
+            {state.course.student_homework ? (
+              <div className='flex items-center gap-2 p-2 font-semibold'>Homework is uploaded</div>
+            ) : (
+              <>
+                <div>
+                  <Button asChild variant='outline'>
+                    <a href={state.course.homework} rel='noreferrer' target='_blank'>
+                      Download Homework Task
+                    </a>
+                  </Button>
+                </div>
+                <CourseHomework />
+              </>
+            )}
+          </TabsContent>
+        )}
       </Tabs>
     </Main>
   );
