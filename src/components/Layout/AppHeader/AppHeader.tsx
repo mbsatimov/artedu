@@ -18,7 +18,7 @@ export const AppHeader = React.forwardRef<React.ElementRef<'header'>, AppHeaderP
         {...props}
       >
         <div className='mx-auto flex h-full max-w-7xl items-center gap-3 px-4'>
-          <Link to='/courses'>
+          <Link to='/'>
             <div className='flex items-center justify-center gap-1'>
               <CommandIcon />
               <h1 className='text-xl font-medium'>ARTEDU</h1>

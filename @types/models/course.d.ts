@@ -12,7 +12,7 @@ interface Course {
   additional_materials: {
     id: number;
     name: string;
-    url: string;
+    file: string;
   }[];
   questions: {
     id: number;

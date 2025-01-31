@@ -14,7 +14,7 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
         <div className='mx-auto max-w-7xl px-4 py-10 md:py-20'>
           <div className='flex flex-col items-start justify-between gap-8 md:gap-12 lg:flex-row'>
             <div>
-              <Link className='flex items-center gap-2' to='/courses'>
+              <Link className='flex items-center gap-2' to='/'>
                 <CommandIcon />
                 <span className='text-2xl font-medium'>ARTEDU</span>
               </Link>

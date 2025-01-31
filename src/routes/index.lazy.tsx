@@ -1,11 +1,13 @@
-import { CheckIcon } from '@radix-ui/react-icons';
+import { AvatarIcon, CheckIcon } from '@radix-ui/react-icons';
 import { createLazyFileRoute, Link } from '@tanstack/react-router';
 import { CommandIcon } from 'lucide-react';
 
 import { AppHeaderThemeSwitch, Main } from '@/components/Layout';
 import { Button, Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui';
+import { useAuth } from '@/utils/stores';
 
 const HomePage = () => {
+  const { accessToken } = useAuth();
   return (
     <div>
       <header className='sticky left-0 top-0 z-50 h-16 gap-3 bg-background'>
@@ -18,9 +20,17 @@ const HomePage = () => {
           </Link>
           <div className='ml-auto flex items-center space-x-4'>
             <AppHeaderThemeSwitch />
-            <Button asChild>
-              <Link to='/login'>Kirish</Link>
-            </Button>
+            {accessToken ? (
+              <Button asChild size='iconSm' variant='secondary'>
+                <Link to='/courses'>
+                  <AvatarIcon className='!size-5' />
+                </Link>
+              </Button>
+            ) : (
+              <Button asChild>
+                <Link to='/login'>Kirish</Link>
+              </Button>
+            )}
           </div>
         </div>
       </header>

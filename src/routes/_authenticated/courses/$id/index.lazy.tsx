@@ -66,7 +66,7 @@ const CourseEditPage = () => {
             {state.course.additional_materials.map((material) => (
               <li key={material.id}>
                 <a
-                  href={material.url}
+                  href={material.file}
                   className='rounded-md bg-primary/10 px-2 py-0.5 text-sm font-semibold text-primary'
                   rel='noreferrer'
                   target='_blank'
