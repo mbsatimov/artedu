@@ -26,10 +26,10 @@ export const AppFooter = React.forwardRef<React.ElementRef<'footer'>, Props>(
               <Link className='text-xl font-medium hover:text-primary' to='/courses'>
                 Courses
               </Link>
-              <Link className='text-xl font-medium hover:text-primary' to='/courses'>
+              <Link className='text-xl font-medium hover:text-primary' to='/profile'>
                 Profile
               </Link>
-              <Link className='text-xl font-medium hover:text-primary' to='/courses'>
+              <Link className='text-xl font-medium hover:text-primary' to='/history'>
                 History
               </Link>
             </div>
