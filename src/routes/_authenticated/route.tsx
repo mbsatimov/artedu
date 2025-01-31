@@ -2,7 +2,7 @@ import { useQuery } from '@tanstack/react-query';
 import { createFileRoute, Outlet, redirect } from '@tanstack/react-router';
 import { NuqsAdapter } from 'nuqs/adapters/react';
 
-import { AppHeader } from '@/components/Layout';
+import { AppFooter, AppHeader } from '@/components/Layout';
 import { Spinner } from '@/components/ui';
 import { getMe } from '@/utils/api/requests';
 import { useAuth, useAuthStore } from '@/utils/stores';
@@ -28,8 +28,13 @@ const AuthenticatedLayout = () => {
 
   return (
     <NuqsAdapter>
-      <AppHeader />
-      <Outlet />
+      <div className='flex min-h-screen flex-col'>
+        <AppHeader />
+        <main className='flex-1'>
+          <Outlet />
+        </main>
+        <AppFooter className='mt-10' />
+      </div>
     </NuqsAdapter>
   );
 };

@@ -27,26 +27,41 @@ const CourseEditPage = () => {
 
   if (!state.course) return null;
 
+  const getYouTubeId = (url: string) => {
+    const match = url.match(
+      /(?:youtube\.com\/(?:[^/]+\/[^/]+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/
+    );
+    return match ? match[1] : null;
+  };
+
   return (
     <Main className='p-4'>
-      {state.course && (
-        <video
-          className='aspect-video w-full rounded-sm bg-black'
-          src={state.course.video}
-          controls
-        />
+      {state.course.video && (
+        <div className='aspect-video'>
+          <iframe
+            className='aspect-video w-full rounded-sm'
+            src={`https://www.youtube.com/embed/${getYouTubeId(state.course.video)}`}
+            title='YouTube video player'
+            allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share'
+            allowFullScreen
+          />
+        </div>
       )}
-      <h1 className='py-2 text-2xl font-bold'>{state.course.title}</h1>
-      <div className='text-lg font-semibold text-muted-foreground'>
+      <h1 className='py-2 text-xl font-bold md:text-2xl'>{state.course.title}</h1>
+      <div className='text-sm font-semibold text-muted-foreground md:text-lg'>
         {state.course.views_count.toLocaleString()} views{' '}
         {formatDistanceToNowStrict(state.course.created_at)} ago
       </div>
-      <Separator className='my-2' />
-      <div dangerouslySetInnerHTML={{ __html: state.course.description }} />
-      <Separator className='my-2' />
+      {state.course.description && (
+        <>
+          <Separator className='my-4 lg:my-8' />
+          <div dangerouslySetInnerHTML={{ __html: state.course.description }} />
+        </>
+      )}
+      <Separator className='my-4 lg:my-8' />
       {!!state.course.additional_materials.length && (
         <>
-          <h2 className='py-2 text-xl font-bold'>Materials</h2>
+          <h2 className='py-2 text-lg font-bold md:text-xl'>Materials</h2>
           <ul className='mb-6 space-y-2'>
             {state.course.additional_materials.map((material) => (
               <li key={material.id}>
@@ -67,8 +82,8 @@ const CourseEditPage = () => {
       <h2 className='py-2 text-xl font-bold'>Tasks</h2>
       <Tabs className='w-[400px]'>
         <TabsList>
-          <TabsTrigger value='quiz'>Solve quiz</TabsTrigger>
-          {state.course.homework && <TabsTrigger value='homework'>Upload homework</TabsTrigger>}
+          <TabsTrigger value='quiz'>Quizzes</TabsTrigger>
+          {state.course.homework && <TabsTrigger value='homework'>Homework</TabsTrigger>}
         </TabsList>
         <TabsContent value='quiz'>
           {state.course.test_result !== null ? (
@@ -89,7 +104,7 @@ const CourseEditPage = () => {
             ) : (
               <>
                 <div>
-                  <Button asChild variant='outline'>
+                  <Button asChild className='mt-2' variant='outline'>
                     <a href={state.course.homework} rel='noreferrer' target='_blank'>
                       Download Homework Task
                     </a>
