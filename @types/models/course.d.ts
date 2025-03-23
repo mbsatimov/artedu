@@ -14,7 +14,7 @@ interface Course {
     name: string;
     file: string;
   }[];
-  questions: {
+  questions?: {
     id: number;
     question: string;
     answers: {

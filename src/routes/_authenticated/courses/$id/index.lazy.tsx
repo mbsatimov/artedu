@@ -79,10 +79,11 @@ const CourseEditPage = () => {
           <Separator className='my-2' />
         </>
       )}
+      {(!!state.course.questions || !!state.course.homework) && <>
       <h2 className='py-2 text-xl font-bold'>Tasks</h2>
       <Tabs className='w-[400px]'>
         <TabsList>
-          <TabsTrigger value='quiz'>Quizzes</TabsTrigger>
+          {state.course.questions && <TabsTrigger value='quiz'>Quizzes</TabsTrigger>}
           {state.course.homework && <TabsTrigger value='homework'>Homework</TabsTrigger>}
         </TabsList>
         <TabsContent value='quiz'>
@@ -116,6 +117,7 @@ const CourseEditPage = () => {
           </TabsContent>
         )}
       </Tabs>
+      </>}
     </Main>
   );
 };
