@@ -28,7 +28,7 @@ export const CourseQuiz = ({ course }: Props) => {
       >
         <h2 className='pb-4 text-xl font-semibold'>Quiz</h2>
         <div className='space-y-4 [&_img]:rounded-sm'>
-          {course.questions.map((question, index) => (
+          {course.questions?.map((question, index) => (
             <div key={question.id}>
               <div className='group/question flex gap-3'>
                 <div className='grid size-6 shrink-0 place-items-center rounded-full bg-primary text-sm text-primary-foreground'>

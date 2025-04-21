@@ -83,10 +83,10 @@ const CourseEditPage = () => {
       <h2 className='py-2 text-xl font-bold'>Tasks</h2>
       <Tabs className='w-[400px]'>
         <TabsList>
-          {state.course.questions && <TabsTrigger value='quiz'>Quizzes</TabsTrigger>}
+          {!!state.course.questions?.length && <TabsTrigger value='quiz'>Quizzes</TabsTrigger>}
           {state.course.homework && <TabsTrigger value='homework'>Homework</TabsTrigger>}
         </TabsList>
-        <TabsContent value='quiz'>
+        {!!state.course.questions?.length && <TabsContent value='quiz'>
           {state.course.test_result !== null ? (
             <div className='flex items-center gap-2 p-2'>
               <span className='font-semibold'>Your quiz result:</span>
@@ -97,7 +97,7 @@ const CourseEditPage = () => {
           ) : (
             <CourseQuiz course={state.course} />
           )}
-        </TabsContent>
+        </TabsContent>}
         {state.course.homework && (
           <TabsContent value='homework'>
             {state.course.student_homework ? (

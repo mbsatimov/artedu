@@ -14,7 +14,7 @@ export const useCourseQuiz = (course: Course) => {
   const form = useForm<CourseQuizSchema>({
     resolver: zodResolver(courseQuizSchema),
     defaultValues: {
-      quiz_answers: course.questions.map((question) => ({
+      quiz_answers: course.questions?.map((question) => ({
         question: question.id,
         answer: undefined
       }))
